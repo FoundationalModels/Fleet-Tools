@@ -115,7 +115,12 @@ def run_episode(robot):
             visualizer.PublishRecording()
             html = meshcat.StaticHtml()
 
-            task_dir = f"assets/demonstrations/{robot.config.task.tool_class_name}for{robot.config.task.task_name}/episode_{fleet_steps}"
+            demo_root = robot.config.demonstration_dir or "assets/demonstrations"
+            task_dir = os.path.join(
+                demo_root,
+                f"{robot.config.task.tool_class_name}for{robot.config.task.task_name}",
+                f"episode_{fleet_steps}",
+            )
             mkdir_if_missing(task_dir)
 
             # it should be the last one

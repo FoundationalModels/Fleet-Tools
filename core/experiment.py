@@ -162,8 +162,15 @@ class ActorWrapper:
             return episode_info, False
 
         if self.config.record_video:
+            demo_root = self.config.demonstration_dir or "assets/demonstrations"
+            video_path = os.path.join(
+                demo_root,
+                self.config.task.tool_class_name + "for" + self.config.task.task_name,
+                f"episode_{self.success_episode}",
+                f"video_{self.local_episode}_{self.config.task.tool_fix_idx}.mp4",
+            )
             video_writer = cv2.VideoWriter(
-                f"assets/demonstrations/{self.config.task.tool_class_name}for{self.config.task.task_name}/episode_{self.success_episode}/video_{self.local_episode}_{self.config.task.tool_fix_idx}.mp4",
+                video_path,
                 cv2.VideoWriter_fourcc("m", "p", "4", "v"),
                 5,
                 (640, 480),

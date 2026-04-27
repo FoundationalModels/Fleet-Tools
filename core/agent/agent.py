@@ -108,7 +108,9 @@ class Agent(object):
             if reward > 0 and save_demo and success:
                 # save an episode in the buffer to local disk
                 print(f"saving traj data: {episode_idx}")
-                demo_path = "assets/demonstrations/{}".format(
+                demo_root = self.config.demonstration_dir or "assets/demonstrations"
+                demo_path = os.path.join(
+                    demo_root,
                     self.config.task.tool_class_name + "for" + self.config.task.task_name + self.config.save_demo_suffix
                 )
                 start_time = time.time()
