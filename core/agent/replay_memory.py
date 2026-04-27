@@ -155,8 +155,7 @@ class ReplayMemory:
         prev_episode_idx = np.where(self.episode_positions[: self.position] == episode_idx)[0]
 
         # skip the first episode due to boundary issues
-        if len(prev_episode_id        # print(prev_episode_idx)
-x) == 0 or prev_episode_idx[0] == 0 or prev_episode_idx[-1] == self.capacity - 1:
+        if len(prev_episode_idx) == 0 or prev_episode_idx[0] == 0 or prev_episode_idx[-1] == self.capacity - 1:
             # check the last episode step and first episode step
             print("skip empty traj")
             return False

@@ -11,6 +11,8 @@ import ray
 from collections import deque
 
 from core.utils import *
+from core.agent.agent import Agent, AgentWrapper
+from core.expert import *
 from visdom import Visdom
 import copy
 import gc
